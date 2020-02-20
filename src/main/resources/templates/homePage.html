@@ -1,0 +1,20 @@
+<th:block th:include="/common/top"></th:block>  
+
+<th:block th:include="/common/navbar"></th:block>  
+<div sec:authorize="hasAuthority('admin')">
+<th:block th:include="/common/sidebaradmin"></th:block>
+<th:block th:include="/common/home"></th:block>
+</div>
+
+<div sec:authorize="hasAuthority('trainingstaff')">
+<th:block th:include="/common/sidebartrainingstaff"></th:block>
+<th:block th:include="/common/home"></th:block>
+</div>
+
+<div sec:authorize="hasAuthority('trainer')">
+<th:block th:include="/common/sidebartrainer"></th:block>
+<th:block th:include="/common/home"></th:block>
+</div>
+
+<script src="js/main.js"></script>
+  <th:block th:include="/common/footer"></th:block>  

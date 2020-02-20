@@ -1,0 +1,65 @@
+<th:block th:include="/common/top"></th:block>  
+<th:block th:include="/common/navbar"></th:block>  
+<div sec:authorize="hasAuthority('trainingstaff')">
+<th:block th:include="/common/sidebartrainingstaff"></th:block>
+
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div>
+                                    <div>Assign Trainee to Course
+                                        <div class="page-title-subheading">Assign Trainee to a course.
+                                        </div>
+                                    </div>
+                                </div>   
+                               </div>
+                        </div>          
+                        <div class="tab-content">
+                            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body"><h5 class="card-title">Assign Trainee-Course</h5>
+                                            
+                                                <form th:action="@{/saveTraineeCourse}" method="POST" th:object="${traineecourse}">
+                                                    <div class="position-relative form-group">
+                                                    	<input th:field="*{ID}" type="hidden" class="form-control" readonly="true">
+                                                    </div>
+                                                    <div class="form-group blu-margin" >
+													    <select class="form-control" th:field="${traineecourse.trainee.traineeID}"  id="dropTrainee">
+													    <option value="0">Select Trainee</option>
+													    <option th:each="trainee : ${listTrainee}" th:value="${trainee.traineeID}" th:text="${trainee.appUser.username}"></option>
+													    </select>
+													</div>
+													
+													<div class="form-group blu-margin" >
+													    <select class="form-control" th:field="${traineecourse.course.courseID}"  id="dropCourse">
+													    <option value="0">Select Course</option>
+													    <option th:each="course : ${listCourse}" th:value="${course.courseID}" th:text="${course.courseName}"></option>
+													    </select>
+													</div>
+                                                    	
+                                                    	<div class="row">
+													       <div class="col-xs-12">
+													        <div th:if="${#fields.hasErrors('ID')}" th:errors="*{ID}"
+													         class="alert alert-danger alert-dismissable">
+													        </div>
+													     </div>
+													     </div>
+                                                    <input type="submit" value="Submit" class="mt-1 btn btn-primary">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+<script src="js/main.js"></script>
+  <th:block th:include="/common/footer"></th:block>  

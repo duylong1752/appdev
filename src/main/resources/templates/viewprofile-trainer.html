@@ -1,0 +1,65 @@
+<th:block th:include="/common/top"></th:block>  
+<th:block th:include="/common/navbar"></th:block>  
+<div sec:authorize="hasAuthority('trainer')">
+<th:block th:include="/common/sidebartrainer"></th:block>
+
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div>
+                                    <div>Profile
+                                        <div class="page-title-subheading">Your profile
+                                        </div>
+                                    </div>
+                                </div>   
+                               </div>
+                        </div>          
+                        <div class="tab-content">
+                            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body"><h5 class="card-title">Your Profile</h5>
+                                            
+                                                <form th:action="@{/trainerinfor-update/}+${trainer.appUser.username}" method="POST" th:object="${trainer}">
+                                                    <div class="position-relative form-group"><label>Name</label>
+                                                    	<input th:field="*{trainerName}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+
+                                                    <div class="position-relative form-group"><label>Username</label>
+                                                    	<input th:value="${trainer.appUser?.username}" type="text" placeholder="dd/MM/yyyy" class="form-control" 
+                                                    	 readonly="true">
+                                                    </div>
+                                                    <div class="position-relative form-group"><label>Type</label>
+                                                    	<input th:field="*{ExterorInter}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+                                                    <div class="position-relative form-group"><label>Education</label>
+                                                    	<input th:field="*{Education}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+                                                    <div class="position-relative form-group"><label>Working Place</label>
+                                                    	<input th:field="*{WorkingPlace}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+                                                    <div class="position-relative form-group"><label>Telephone</label>
+                                                    	<input th:field="*{Telephone}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+                                                    <div class="position-relative form-group"><label>Email</label>
+                                                    	<input th:field="*{Email}" placeholder="NULL" type="text" class="form-control" readonly="true">
+                                                    </div>
+
+                                                    <input type="submit" value="Edit" class="mt-1 btn btn-primary">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+<script src="js/main.js"></script>
+  <th:block th:include="/common/footer"></th:block>  

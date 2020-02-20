@@ -1,0 +1,89 @@
+<th:block th:include="/common/top"></th:block>  
+
+<th:block th:include="/common/navbar"></th:block>  
+<div sec:authorize="hasAuthority('trainingstaff')">
+<th:block th:include="/common/sidebartrainingstaff"></th:block>
+
+
+<div class="app-main__outer">
+  <div class="app-main__inner">
+      <div class="app-page-title">
+          <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                    </i>
+                </div>
+                <div>Trainer
+                    <div class="page-title-subheading">List of all Trainer
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+          </div>
+      
+<div class="row">
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-7">
+                        <h3>Trainer Information</h3>
+                    </div>
+                    
+                    <div class="col-3">
+                    	<div class="search-wrapper">
+		                    <div class="input-holder">
+		                    	<form th:action="@{/searchTrainer}" method="POST">
+		                    		<input th:value="${searchKey}" type="text" class="search-input" placeholder="Type to search" name="searchKey">
+		                    	</form>
+		                        <button class="search-icon"><span></span></button>
+		                        
+		                    </div>
+		                    <button class="close"></button>
+		                </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                    <table class="mb-0 table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Type</th>
+                            <th>Education</th>
+                            <th>Working Place</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="trainer : ${listTrainer}">
+                            <th scope="row" th:text="${trainer.trainerID}"></th>
+                            <td th:text="${trainer.trainerName}"></td>
+                            <td th:text="${trainer.appUser.username}"></td>
+                            <td th:text="${trainer.ExterorInter}"></td>
+                            <td th:text="${trainer.Education}"></td>
+                            <td th:text="${trainer.WorkingPlace}"></td>
+                            <td th:text="${trainer.Telephone}"></td>
+                            <td th:text="${trainer.Email}"></td>
+                            <td>
+                            	<a th:href="@{/trainer-update/} + ${trainer.trainerID}" class="btn btn-sm btn-info edit-product" style="color:#fff;"><span style="display:none;"></span><i class="fas fa-pencil-alt"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="js/main.js"></script>
+  <th:block th:include="/common/footer"></th:block>  

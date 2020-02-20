@@ -1,0 +1,112 @@
+<th:block th:include="/common/top"></th:block>  
+
+<th:block th:include="/common/navbar"></th:block>  
+<div sec:authorize="hasAuthority('trainingstaff')">
+<th:block th:include="/common/sidebartrainingstaff"></th:block>
+
+
+<div class="app-main__outer">
+  <div class="app-main__inner">
+      <div class="app-page-title">
+          <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                    </i>
+                </div>
+                <div>Topic
+                    <div class="page-title-subheading">List of all Topics
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+          </div>
+      
+<div class="row">
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-7">
+                        <h3>Topic</h3>
+                    </div>
+                    
+                    <div class="col-3">
+                    	<div class="search-wrapper">
+		                    <div class="input-holder">
+		                    	<form th:action="@{/searchTopic}" method="POST">
+		                    		<input th:value="${searchKey}" type="text" class="search-input" placeholder="Type to search" name="searchKey">
+		                    	</form>
+		                        <button class="search-icon"><span></span></button>
+		                        
+		                    </div>
+		                    <button class="close"></button>
+		                </div>
+                    </div>
+                    
+                    
+                    <div class="col-2">
+                        <a th:href="@{/topic-save}" class="btn btn-primary btn-sm">Add Topic</a>
+                    </div>
+                </div>
+                
+                    <table class="mb-0 table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="topic : ${listTopic}">
+                            <th scope="row" th:text="${topic.topicID}"></th>
+                            <td th:text="${topic.topicName}"></td>
+                            <td th:text="${topic.course.courseName}"></td>
+                            <td th:text="${topic.Description}"></td>
+                            <td>
+                            	<a th:href="@{/topic-update/} + ${topic.topicID}" class="btn btn-sm btn-info edit-product" style="color:#fff;"><span style="display:none;"></span><i class="fas fa-pencil-alt"></i></a>
+                            	
+                            	<button type ="button" class="btn btn-sm btn-danger delete-product" style="color:#fff;" data-toggle="modal"
+                    				th:attr="data-target='#delModal'+ ${topic.topicID}"><i class="fas fa-trash-alt"></i>
+                            	</button>
+                            	
+                            	<div class="modal fade" th:id="'delModal' + ${topic.topicID}">
+				                    <div class="modal-dialog">
+				                        <div class="modal-content">
+				
+				                            <!-- Modal Header -->
+				                            <div class="modal-header">
+				                                <h4 class="modal-title">Are you sure?</h4>
+				                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				                            </div>
+				
+				                            <!-- Modal footer -->
+				                            <div class="modal-footer">
+				                            	<a th:href="@{/topicDelete/} + ${topic.topicID}"><button
+				                                        type="button" class="btn btn-info">Yes</button></a>
+				                                <button type="button" class="btn btn-danger"
+				                                    data-dismiss="modal">Close</button>
+				                                
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				                
+				                
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="js/main.js"></script>
+  <th:block th:include="/common/footer"></th:block>  
