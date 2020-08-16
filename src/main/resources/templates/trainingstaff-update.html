@@ -26,7 +26,7 @@
                                         <div class="main-card mb-3 card">
                                             <div class="card-body"><h5 class="card-title">Update Trainer Account</h5>
                                             
-                                                <form th:action="@{/updateTrainingstaff}" method="POST" th:object="${trainerStaff}">
+                                                <form th:action="@{/updateTrainingstaff}" method="POST" th:object="${trainingStaff}">
                                                 <div class="position-relative form-group"><label for="exampleEmail" class="">ID</label>
                                                     	<input th:field="*{userID}" placeholder="Input Username" type="text" class="form-control" readonly="true">
                                                     </div>

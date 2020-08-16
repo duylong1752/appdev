@@ -58,22 +58,6 @@ public class MainController {
         return "logoutSuccessfulPage";
     }
  
-    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-    public String userInfo(Model model, Principal principal) {
- 
-        // Sau khi user login thanh cong se co principal
-        String userName = principal.getName();
- 
-        System.out.println("User Name: " + userName);
- 
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
- 
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
- 
-        return "userInfoPage";
-    }
- 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String accessDenied(Model model, Principal principal) {
  

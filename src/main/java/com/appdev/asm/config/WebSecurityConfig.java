@@ -43,18 +43,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
  
         // Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout","/home").permitAll();
  
         // Trang /userInfo yêu cầu phải login với vai trò ROLE_USER hoặc ROLE_ADMIN.
         // Nếu chưa login, nó sẽ redirect tới trang /login.
         //http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
  
         // Trang chỉ dành cho ADMIN
-        http.authorizeRequests().antMatchers("/admin").access("hasRole('admin')");
+        http.authorizeRequests().antMatchers("/traineraccount-list","/traineraccount-save","/traineraccount-update","/trainingstaff-list","/trainingstaff-save","/trainingstaff-update").access("hasAuthority('admin')");
         
-        http.authorizeRequests().antMatchers("/trainingstaff").access("hasRole('trainingstaff')");
-        http.authorizeRequests().antMatchers("/trainer").access("hasRole('trainer')");
-        http.authorizeRequests().antMatchers("/trainee").access("hasRole('trainee')");
+        http.authorizeRequests().antMatchers("/category-list","/category-save","/category-update","/course-list","/course-save","/course-update",
+        									"/topic-list","/topic-save","/topic-update","/trainee-list","/trainee-save","/trainee-update",
+        									"/traineecourse-list","/traineecourse-save","/trainer-list","/trainer-update","/trainertopic-list","/trainertopic-save").access("hasAuthority('trainingstaff')");
+        http.authorizeRequests().antMatchers("/viewcourse","/viewprofile","/trainerinfor-update").access("hasAuthority('trainer')");
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
         // Ngoại lệ AccessDeniedException sẽ ném ra.
